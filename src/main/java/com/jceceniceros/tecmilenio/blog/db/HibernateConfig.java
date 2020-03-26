@@ -1,5 +1,8 @@
 package com.jceceniceros.tecmilenio.blog.db;
 
+import com.jceceniceros.tecmilenio.blog.models.Article;
+import com.jceceniceros.tecmilenio.blog.models.User;
+
 import org.hibernate.cfg.Configuration;
 
 public class HibernateConfig {
@@ -17,11 +20,13 @@ public class HibernateConfig {
         return configuration;
     }
 
-    private static Configuration configure() {
+    private static void configure() {
         configuration = new Configuration();
 
         // Configure
+        configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(Article.class);
+        // ------
 
-        return configuration;
     }
 }
