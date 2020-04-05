@@ -14,7 +14,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "first_name", nullable = false)
     private String first_name;
@@ -46,7 +46,7 @@ public class User {
     private Timestamp deleted_at;
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
