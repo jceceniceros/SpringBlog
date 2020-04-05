@@ -1,5 +1,0 @@
-hibernate.connection.driver =
-hibernate.connection.url =
-hibernate.connection.username =
-hibernate.connection.password =
-hibernate.dialect =
