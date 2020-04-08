@@ -1,6 +1,7 @@
 package com.jceceniceros.tecmilenio.blog.models;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -17,53 +18,55 @@ public class User {
     private Long id;
 
     @Column(name = "first_name", nullable = false)
-    private String first_name;
+    private String firstName;
 
     @Column(name = "last_name", nullable = false)
-    private String last_name;
+    private String lastName;
 
-    @Column(name = "username", nullable = false)
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
 
     @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "image_url")
-    private String image_url;
+    private String imageUrl;
 
     @Column(name = "remember_token")
-    private String remember_token;
+    private String rememberToken;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false, nullable = false)
-    private Timestamp created_at;
+    private Timestamp createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at", updatable = false, nullable = false)
-    private Timestamp updated_at;
+    private Timestamp updatedAt;
 
     @Column(name = "deleted_at")
-    private Timestamp deleted_at;
+    private Timestamp deletedAt;
 
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Article> articles;
 
     public Long getId() {
         return id;
     }
 
     public String getFirstName() {
-        return first_name;
+        return firstName;
     }
 
-    public void setFirstName(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return last_name;
+        return lastName;
     }
 
-    public void setLastName(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUsername() {
@@ -83,35 +86,41 @@ public class User {
     }
 
     public String getImageUrl() {
-        return image_url;
+        return imageUrl;
     }
 
-    public void setImageUrl(String image_url) {
-        this.image_url = image_url;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getRememberToken() {
-        return remember_token;
+        return rememberToken;
     }
 
-    public void setRememberToken(String remember_token) {
-        this.remember_token = remember_token;
+    public void setRememberToken(String rememberToken) {
+        this.rememberToken = rememberToken;
     }
 
     public Timestamp getCreatedAt() {
-        return created_at;
+        return createdAt;
     }
 
     public Timestamp getUpdatedAt() {
-        return updated_at;
+        return updatedAt;
     }
 
     public Timestamp getDeletedAt() {
-        return deleted_at;
+        return deletedAt;
     }
 
-    public void setDeletedAt(Timestamp deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    // Relationships
+
+    public Set<Article> getArticles() {
+        return this.articles;
     }
 
 }

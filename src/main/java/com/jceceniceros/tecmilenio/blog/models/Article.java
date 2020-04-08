@@ -12,38 +12,42 @@ import org.hibernate.annotations.UpdateTimestamp;
 public class Article {
 
     @Id
-    @Column(name = "id", updatable = false, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
 
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "slug")
+    @Column(name = "slug", unique = true)
     private String slug;
 
     @Column(name = "body", nullable = false)
     private String body;
 
     @Column(name = "image_url")
-    private String image_url;
+    private String imageUrl;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "author_id")
+    private User author;
 
     @Column(name = "published_at")
-    private Timestamp published_at;
+    private Timestamp publishedAt;
 
     @CreationTimestamp
     @Column(name = "created_at")
-    private Timestamp created_at;
+    private Timestamp createdAt;
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    private Timestamp updated_at;
+    private Timestamp updatedAt;
 
     @Column(name = "deleted_at")
-    private Timestamp deleted_at;
+    private Timestamp deletedAt;
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -72,43 +76,54 @@ public class Article {
     }
 
     public String getImageUrl() {
-        return image_url;
+        return imageUrl;
     }
 
-    public void setImageUrl(String image_url) {
-        this.image_url = image_url;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Timestamp getPublishedAt() {
-        return published_at;
+        return publishedAt;
     }
 
-    public void setPublishedAt(Timestamp published_at) {
-        this.published_at = published_at;
+    public void setPublishedAt(Timestamp publishedAt) {
+        this.publishedAt = publishedAt;
     }
 
     public Timestamp getCreatedAt() {
-        return created_at;
-    }
-
-    public void setCreatedAt(Timestamp created_at) {
-        this.created_at = created_at;
+        return createdAt;
     }
 
     public Timestamp getUpdatedAt() {
-        return updated_at;
-    }
-
-    public void setUpdatedAt(Timestamp updated_at) {
-        this.updated_at = updated_at;
+        return updatedAt;
     }
 
     public Timestamp getDeletedAt() {
-        return deleted_at;
+        return deletedAt;
     }
 
-    public void setDeletedAt(Timestamp deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    // Relationships
+
+    public User getAuthor() {
+        return this.author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    //
+
+    @Override
+    public String toString() {
+        return "Article [ " +
+            "DB ID = " + this.getId() + " " +
+            "Title = " + this.getTitle() + " ]";
     }
 
 }
