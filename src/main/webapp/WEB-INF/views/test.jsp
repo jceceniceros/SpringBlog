@@ -1,8 +1,5 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
-
-<%
-    String action = (String) request.getAttribute("action");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +10,6 @@
     </head>
 
     <body>
-        <h1><%= action %></h1>
+        <h1>${action}</h1>
     </body>
 </html>
