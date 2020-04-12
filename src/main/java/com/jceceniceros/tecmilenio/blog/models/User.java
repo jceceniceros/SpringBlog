@@ -49,6 +49,19 @@ public class User {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Article> articles;
 
+    // Constructores
+
+    public User() {}
+
+    public User(String firstName, String lastName, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        setPassword(password);
+    }
+
+    // Getters / Setters
+
     public Long getId() {
         return id;
     }
