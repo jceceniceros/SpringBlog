@@ -3,6 +3,7 @@
 
 <!doctype html>
 <html lang="en">
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,7 +11,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="/styles/app.css">
 
-        <title>SpringBlog | Mostrar usuarios</title>
+        <title>SpringBlog | Editar usuario</title>
     </head>
 
     <body>
@@ -54,7 +55,7 @@
                         <div class="col-xl-3 col-lg-3 col-md-3 col-12 mb-5">
                             <ul class="nav nav-pills flex-column">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link active">Ver todos los usuarios</a>
+                                    <a href="/dashboard/users" class="nav-link">Ver todos los usuarios</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="/dashboard/users/create" class="nav-link">Crear nuevo usuario</a>
@@ -63,7 +64,7 @@
                         </div>
 
                         <div class="col-xl-9 col-lg-9 col-md-9 col-12 mb-5">
-                            <h2>Todos los usuarios</h2>
+                            <h2 class>Editar usuario</h2>
 
                             <hr>
 
@@ -76,35 +77,42 @@
                                 </div>
                             </c:if>
 
-                            <table class="table table-hover table-striped">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th class="text-center">ID</th>
-                                        <th class="text-center">Nombre</th>
-                                        <th class="text-center">Username</th>
-                                        <th class="text-center">Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${users}" var="user">
-                                        <tr>
-                                            <td class="text-center">
-                                                <c:out value="${user.getId()}" />
-                                            </td>
-                                            <td>
-                                                <c:out value="${user.getFullname()}" />
-                                            </td>
-                                            <td>
-                                                <c:out value="${user.getUsername()}" />
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="/dashboard/users/${user.getId()}" class="btn btn-primary">Editar</a>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
+                            <form action="/dashboard/users/${user.getId()}" method="post" class="form">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
+                                <div class="form-group">
+                                    <label for="user-first-name">Nombre:</label>
+                                    <input type="text" name="firstName"
+                                        id="user-first-name" class="form-control"
+                                        value="${user.getFirstName()}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="user-last-name">Apellido</label>
+                                    <input type="text" name="lastName"
+                                        id="user-last-name" class="form-control"
+                                        value="${user.getLastName()}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="user-username">Username</label>
+                                    <input type="text" name="username"
+                                        id="user-username" class="form-control"
+                                        value="${user.getUsername()}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="user-password">Password</label>
+                                    <input type="text" name="password"
+                                        id="user-password" class="form-control">
+                                </div>
+
+                                <div class="form-group text-center">
+                                    <input type="submit" class="btn btn-primary" value="Guardar cambios">
+
+                                    <a href="/dashboard/users" class="btn btn-link">Cancelar</a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

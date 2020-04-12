@@ -2,7 +2,7 @@ package com.jceceniceros.tecmilenio.blog.forms.users;
 
 import javax.validation.constraints.NotEmpty;
 
-public class CreateUserForm {
+public class StoreUserForm {
 
     @NotEmpty
     private String firstName;
@@ -47,12 +47,6 @@ public class CreateUserForm {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        String formatString = "CreateUserForm [ firstName=%s, lastName=%s, username=%s, password=%s ]";
-        return String.format(formatString, firstName, lastName, username, password);
     }
 
 }

@@ -95,6 +95,9 @@ public class User {
     }
 
     public void setPassword(String password) {
+        if (password == null) {
+            return;
+        }
         this.password = password;
     }
 
