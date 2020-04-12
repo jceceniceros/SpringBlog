@@ -1,4 +1,5 @@
-<%@page language="java" contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!doctype html>
 <html lang="en">
@@ -66,14 +67,14 @@
 
                             <hr>
 
-                            <% if (request.getAttribute("successMessage") != null) { %>
+                            <c:if test="${successMessage != null}">
                                 <div class="alert alert-success alert-dismissible fade show">
                                     <button type="button" class="close" data-dismiss="alert">
                                         <span>&times;</span>
                                     </button>
-                                    <%= (String) request.getAttribute("successMessage") %>
+                                    ${successMessage}
                                 </div>
-                            <% } %>
+                            </c:if>
 
                             <table class="table table-hover table-striped">
                                 <thead class="thead-dark">
@@ -84,7 +85,24 @@
                                         <th class="text-center">Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody>
+                                    <c:forEach items="${users}" var="user">
+                                        <tr>
+                                            <td class="text-center">
+                                                <c:out value="${user.getId()}" />
+                                            </td>
+                                            <td>
+                                                <c:out value="${user.getFullname()}" />
+                                            </td>
+                                            <td>
+                                                <c:out value="${user.getUsername()}" />
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="/dashboard/users/${user.getId()}" class="btn btn-primary">Editar</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
                             </table>
 
                         </div>

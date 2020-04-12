@@ -130,6 +130,12 @@ public class User {
         this.deletedAt = deletedAt;
     }
 
+    // Custom
+
+    public String getFullname() {
+        return String.format("%s %s", firstName, lastName);
+    }
+
     // Relationships
 
     public Set<Article> getArticles() {

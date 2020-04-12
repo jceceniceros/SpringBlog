@@ -1,5 +1,7 @@
 package com.jceceniceros.tecmilenio.blog.implementations;
 
+import java.util.List;
+
 import com.jceceniceros.tecmilenio.blog.models.User;
 import com.jceceniceros.tecmilenio.blog.repositories.UserRepository;
 import com.jceceniceros.tecmilenio.blog.services.UserService;
@@ -12,6 +14,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository repository;
+
+    public List<User> all() {
+        return repository.findAll();
+    }
 
     public User find(Long id) {
         return repository.getOne(id);
