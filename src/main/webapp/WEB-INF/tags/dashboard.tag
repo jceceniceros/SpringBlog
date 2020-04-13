@@ -37,24 +37,25 @@
 
             <section>
                 <div class="container">
-                    <div class="text-center my-3">
+                    <div class="my-3">
                         <h1>Panel de administración</h1>
                     </div>
 
                     <hr>
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Articulos</a>
+                            <a href="/dashboard/articles" class="nav-link">Artículos</a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Usuarios</a>
+                            <a href="/dashboard/users" class="nav-link">Usuarios</a>
                         </li>
                     </ul>
                     <hr>
 
-                    <jsp:doBody />
-
+                    <section id="dashboard-body">
+                        <jsp:doBody />
+                    </section>
                 </div>
             </section>
 

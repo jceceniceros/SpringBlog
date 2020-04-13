@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/dashboard/users")
-public class UserController {
+public class DashboardUserController {
 
     @Autowired
     UserService service;
@@ -45,11 +45,9 @@ public class UserController {
         BindingResult bindingResult,
         RedirectAttributes attributes
     ) {
-        String redirect = "redirect:/dashboard/users/create";
-
         if (bindingResult.hasErrors()) {
             attributes.addFlashAttribute("org.springframework.validation.BindingResult.userForm", bindingResult);
-            return redirect;
+            return "redirect:/dashboard/users/create";
         }
 
         User user = new User(
@@ -61,12 +59,15 @@ public class UserController {
 
         service.save(user);
 
-        attributes.addFlashAttribute("successMessage", "El usuario se creo corectamente");
-        return redirect;
+        attributes.addFlashAttribute("successMessage", "El usuario se creo correctamente");
+        return "redirect:/dashboard/users";
     }
 
     @GetMapping(value = "/{userId}")
-    public String edit(@PathVariable Long userId, Model model) {
+    public String edit(
+        @PathVariable Long userId,
+        Model model
+    ) {
         User user = service.find(userId);
         model.addAttribute("user", user);
         return "dashboard/users/edit";
@@ -97,12 +98,6 @@ public class UserController {
 
         attributes.addFlashAttribute("successMessage", "El usuario se actualizó corectamente");
         return redirect;
-    }
-
-    @PostMapping(value = "/{userId}/delete")
-    public String delete(@PathVariable String userId, Model model) {
-        model.addAttribute("action", "Dashboard Users Delete");
-        return "test";
     }
 
 }

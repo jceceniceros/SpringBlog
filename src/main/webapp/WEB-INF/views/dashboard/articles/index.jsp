@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:dashboard>
     <jsp:attribute name="title">
@@ -9,14 +9,17 @@
 
     <jsp:body>
         <div class="d-flex justify-content-between align-items-center">
-            <h3 class>Todos los artículos</h3>
+            <h3 class="mb-0">Artículos > Ver todo</h3>
             <a href="/dashboard/articles/create" class="btn btn-outline-primary">Crear nuevo artículo</a>
         </div>
 
         <hr>
 
         <c:if test="${successMessage != null && !successMessage.isEmpty()}">
-            <div class="alert alert-success">
+            <div class="alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
                 ${successMessage}
             </div>
         </c:if>

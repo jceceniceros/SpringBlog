@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:dashboard>
     <jsp:attribute name="title">
@@ -9,12 +9,18 @@
     </jsp:attribute>
 
     <jsp:body>
-        <h3 class>Crear nuevo artículo</h3>
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">Artículos > Crear</h3>
+            <a href="/dashboard/articles" class="btn btn-link">Cancelar</a>
+        </div>
 
         <hr>
 
         <spring:hasBindErrors name="articleForm">
-            <div class="alert alert-danger">
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
                 <ul class="mb-0">
                     <c:forEach items="${errors.allErrors}" var="error">
                         <li>${error.defaultMessage}</li>
@@ -49,8 +55,6 @@
 
             <div class="form-group text-center">
                 <input type="submit" class="btn btn-primary" value="Crear nuevo artículo">
-
-                <a href="/dashboard/articles" class="btn btn-link">Cancelar</a>
             </div>
         </form>
     </jsp:body>

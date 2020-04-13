@@ -1,4 +1,4 @@
-CREATE DATABASE `spring_blog` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `spring_blog` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 USE `spring_blog`;
 
@@ -15,14 +15,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_username_unique` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS`articles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `body` longtext NOT NULL,
-  `image_url` varchar(1000) COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `image_url` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT NULL,
   `author_id` int(10) unsigned DEFAULT NULL,
   `published_at` datetime NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -32,4 +32,4 @@ CREATE TABLE IF NOT EXISTS`articles` (
   UNIQUE KEY `articles_slug_unique` (`slug`),
   KEY `articles_author_id_index` (`author_id`),
   CONSTRAINT `articles_author_id_foreign` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

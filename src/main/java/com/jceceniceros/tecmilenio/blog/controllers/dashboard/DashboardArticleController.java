@@ -102,7 +102,7 @@ public class DashboardArticleController {
 
         articleService.save(article);
 
-        attributes.addFlashAttribute("successMessage", "El articulo se actualizó correctamente.");
+        attributes.addFlashAttribute("successMessage", "El artículo se actualizó correctamente.");
         return redirect;
     }
 

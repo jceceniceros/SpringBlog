@@ -8,51 +8,50 @@
     </jsp:attribute>
 
     <jsp:body>
-        <section>
-            <div class="d-flex justify-content-between align-items-center">
-                <h3 class="mb-0">Usuarios > Todos los usuarios</h3>
-                <a href="/dashboard/users/create" class="btn btn-outline-primary">Crear nuevo usuario</a>
+        <div class="d-flex justify-content-between align-items-center">
+            <h3 class="mb-0">Usuarios > Ver todo</h3>
+            <a href="/dashboard/users/create" class="btn btn-outline-primary">Crear nuevo usuario</a>
+        </div>
+
+        <hr>
+
+        <c:if test="${successMessage != null && !successMessage.isEmpty()}">
+            <div class="alert alert-success alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
+                ${successMessage}
             </div>
+        </c:if>
 
-            <hr>
-
-            <c:if test="${successMessage != null && !successMessage.isEmpty()}">
-                <div class="alert alert-success alert-dismissible fade show">
-                    <button type="button" class="close" data-dismiss="alert">
-                        <span>&times;</span>
-                    </button>
-                    ${successMessage}
-                </div>
-            </c:if>
-
-            <table class="table table-hover table-striped">
-                <thead class="thead-dark">
+        <table class="table table-hover table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Username</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${users}" var="user">
                     <tr>
-                        <th class="text-center">ID</th>
-                        <th class="text-center">Nombre</th>
-                        <th class="text-center">Username</th>
-                        <th class="text-center">Acciones</th>
+                        <td class="text-center">
+                            ${user.getId()}
+                        </td>
+                        <td>
+                            ${user.getFullname()}
+                        </td>
+                        <td>
+                            ${user.getUsername()}
+                        </td>
+                        <td class="text-center">
+                            <a href="/dashboard/users/${user.getId()}"
+                                class="btn btn-primary btn-sm">Editar</a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${users}" var="user">
-                        <tr>
-                            <td class="text-center">
-                                <c:out value="${user.getId()}" />
-                            </td>
-                            <td>
-                                <c:out value="${user.getFullname()}" />
-                            </td>
-                            <td>
-                                <c:out value="${user.getUsername()}" />
-                            </td>
-                            <td class="text-center">
-                                <a href="/dashboard/users/${user.getId()}" class="btn btn-primary">Editar</a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-        </section>
+                </c:forEach>
+            </tbody>
+        </table>
     </jsp:body>
 </t:dashboard>
