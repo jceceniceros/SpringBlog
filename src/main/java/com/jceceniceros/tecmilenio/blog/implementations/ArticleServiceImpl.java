@@ -1,5 +1,7 @@
 package com.jceceniceros.tecmilenio.blog.implementations;
 
+import java.util.List;
+
 import com.jceceniceros.tecmilenio.blog.models.Article;
 import com.jceceniceros.tecmilenio.blog.repositories.ArticleRepository;
 import com.jceceniceros.tecmilenio.blog.services.ArticleService;
@@ -12,6 +14,10 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     private ArticleRepository repository;
+
+    public List<Article> all() {
+        return repository.findAll();
+    }
 
     public Article find(Long id) {
         return repository.getOne(id);

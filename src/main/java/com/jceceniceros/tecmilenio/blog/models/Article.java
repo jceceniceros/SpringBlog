@@ -46,6 +46,18 @@ public class Article {
     @Column(name = "deleted_at")
     private Timestamp deletedAt;
 
+    // Constructores
+
+    public Article() {}
+
+    public Article(String title, String body, String imageUrl, User author) {
+        this.title = title;
+        this.body = body;
+        this.imageUrl = imageUrl;
+        setAuthor(author);
+    }
+
+    // Getters & Setters
 
     public Long getId() {
         return id;
