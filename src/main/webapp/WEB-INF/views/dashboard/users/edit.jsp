@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:dashboard>
@@ -9,7 +10,7 @@
 
     <jsp:body>
         <section>
-            <h2 class>Editar usuario</h2>
+            <h3 class>Editar usuario</h3>
 
             <hr>
 
@@ -47,10 +48,20 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="user-password">Password</label>
-                    <input type="text" name="password"
+                    <label for="user-password">Contraseña</label>
+                    <input type="password" name="password"
                         id="user-password" class="form-control">
                 </div>
+
+                <spring:hasBindErrors name="userForm">
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            <c:forEach var="error" items="${errors.allErrors}">
+                                <li>${error.defaultMessage}</li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </spring:hasBindErrors>
 
                 <div class="form-group text-center">
                     <input type="submit" class="btn btn-primary" value="Guardar cambios">

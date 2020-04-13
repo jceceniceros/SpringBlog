@@ -4,16 +4,16 @@ import javax.validation.constraints.NotEmpty;
 
 public class StoreUserForm {
 
-    @NotEmpty
+    @NotEmpty(message="{user.firstname.empty}")
     private String firstName;
 
-    @NotEmpty
+    @NotEmpty(message="{user.lastname.empty}")
     private String lastName;
 
-    @NotEmpty
+    @NotEmpty(message="{user.username.empty}")
     private String username;
 
-    @NotEmpty
+    @NotEmpty(message="{user.password.empty}")
     private String password;
 
 

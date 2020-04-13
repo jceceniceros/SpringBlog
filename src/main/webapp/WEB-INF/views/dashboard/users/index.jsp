@@ -10,7 +10,7 @@
     <jsp:body>
         <section>
             <div class="d-flex justify-content-between align-items-center">
-                <h2 class="mb-0">Usuarios > Todos los usuarios</h2>
+                <h3 class="mb-0">Usuarios > Todos los usuarios</h3>
                 <a href="/dashboard/users/create" class="btn btn-outline-primary">Crear nuevo usuario</a>
             </div>
 

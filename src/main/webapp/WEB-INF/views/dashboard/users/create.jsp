@@ -10,7 +10,7 @@
 
     <jsp:body>
         <section>
-            <h2 class>Crear nuevo usuario</h2>
+            <h3 class>Crear nuevo usuario</h3>
 
             <hr>
 
@@ -56,10 +56,11 @@
                 </spring:hasBindErrors>
 
                 <div class="form-group text-center">
-                    <input type="submit" class="btn btn-primary" value="Enviar">
+                    <input type="submit" class="btn btn-primary" value="Crear nuevo usuario">
+
+                    <a href="/dashboard/users" class="btn btn-link">Cancelar</a>
                 </div>
             </form>
         </section>
     </jsp:body>
 </t:dashboard>
-
