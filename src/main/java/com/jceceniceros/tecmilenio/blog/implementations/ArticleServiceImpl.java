@@ -33,4 +33,14 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
+    public Boolean delete(Article article) {
+        try {
+            repository.delete(article);
+            return true;
+        } catch (Exception e) {
+            // Log de la excepcion
+            return false;
+        }
+    }
+
 }

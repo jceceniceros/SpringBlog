@@ -28,7 +28,7 @@ public class Article {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
     private User author;
 

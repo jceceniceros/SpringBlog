@@ -55,7 +55,7 @@ public class DashboardArticleController {
             return "redirect:/dashboard/articles/create";
         }
 
-        User author = userService.find(1L);
+        User author = userService.find(3L);
 
         Article article = new Article(
             articleForm.getTitle(),
@@ -104,6 +104,17 @@ public class DashboardArticleController {
 
         attributes.addFlashAttribute("successMessage", "El artículo se actualizó correctamente.");
         return redirect;
+    }
+
+    @PostMapping(value = "/{articleId}/delete")
+    public String delete(
+        @PathVariable Long articleId,
+        RedirectAttributes attributes
+    ) {
+        Article article = articleService.find(articleId);
+        articleService.delete(article);
+        attributes.addFlashAttribute("successMessage", "El artículo se eliminó correctamente.");
+        return "redirect:/dashboard/articles";
     }
 
 }

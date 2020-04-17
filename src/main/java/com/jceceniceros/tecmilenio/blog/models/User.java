@@ -46,7 +46,7 @@ public class User {
     @Column(name = "deleted_at")
     private Timestamp deletedAt;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
     private Set<Article> articles;
 
     // Constructores
