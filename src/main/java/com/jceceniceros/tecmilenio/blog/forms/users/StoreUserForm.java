@@ -2,7 +2,7 @@ package com.jceceniceros.tecmilenio.blog.forms.users;
 
 import javax.validation.constraints.NotEmpty;
 
-public class StoreUserForm {
+public class StoreUserForm extends UserForm {
 
     @NotEmpty(message="{user.firstname.empty}")
     private String firstName;

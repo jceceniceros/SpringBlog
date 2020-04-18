@@ -50,14 +50,7 @@ public class DashboardUserController {
             return "redirect:/dashboard/users/create";
         }
 
-        User user = new User(
-            userForm.getFirstName(),
-            userForm.getLastName(),
-            userForm.getUsername(),
-            userForm.getPassword()
-        );
-
-        service.save(user);
+        service.save(userForm, null);
 
         attributes.addFlashAttribute("successMessage", "El usuario se creo correctamente");
         return "redirect:/dashboard/users";
@@ -88,13 +81,7 @@ public class DashboardUserController {
         }
 
         User user = service.find(userId);
-
-        user.setFirstName(userForm.getFirstName());
-        user.setLastName(userForm.getLastName());
-        user.setUsername(userForm.getUsername());
-        user.setPassword(userForm.getPassword());
-
-        service.save(user);
+        service.save(userForm, user);
 
         attributes.addFlashAttribute("successMessage", "El usuario se actualizó corectamente");
         return redirect;
