@@ -87,4 +87,15 @@ public class DashboardUserController {
         return redirect;
     }
 
+    @PostMapping(value = "/{userId}/delete")
+    public String delete(
+        @PathVariable Long userId,
+        RedirectAttributes attributes)
+    {
+        User user = service.find(userId);
+        service.delete(user);
+        attributes.addFlashAttribute("successMessage", "El usuario se eliminó correctamente.");
+        return "redirect:/dashboard/users";
+    }
+
 }

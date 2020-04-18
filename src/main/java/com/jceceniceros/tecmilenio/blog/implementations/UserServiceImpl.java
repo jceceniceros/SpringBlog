@@ -38,6 +38,18 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public Boolean delete(User user) {
+        try {
+            repository.delete(user);
+            return true;
+        } catch (Exception e) {
+            // Log de la excepcion
+            return false;
+        }
+    }
+
+    //
+
     public User findByUsername(String username) {
         return repository.findByUsername(username);
     }

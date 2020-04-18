@@ -10,6 +10,7 @@ public interface UserService {
     public List<User> all();
     public User find(Long id);
     public Boolean persist(User user);
+    public Boolean delete(User user);
 
     public User findByUsername(String username);
 

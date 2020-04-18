@@ -48,6 +48,11 @@
                         <td class="text-center">
                             <a href="/dashboard/users/${user.getId()}"
                                 class="btn btn-primary btn-sm">Editar</a>
+
+                            <form action="/dashboard/users/${user.getId()}/delete" method="post">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                <button class="btn btn-danger btn-sm">Eliminar</a>
+                            </form>
                         </td>
                     </tr>
                 </c:forEach>
