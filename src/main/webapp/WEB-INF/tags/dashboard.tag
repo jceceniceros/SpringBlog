@@ -31,6 +31,17 @@
                                 </li>
                             </ul>
                         </div>
+
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li>
+                                <form action="/auth/logout" method="post">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                    <input type="submit" class="btn btn-primary btn-small btn-nav" value="Cerrar sesión">
+                                </form>
+                            </li>
+
+                        </ul>
                     </div>
                 </nav>
             </header>
