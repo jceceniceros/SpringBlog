@@ -42,14 +42,16 @@
                         <td>
                             ${article.getTitle()}
                         </td>
-                        <td class="text-center">
-                            <a href="/dashboard/articles/${article.getId()}"
-                                class="btn btn-primary btn-sm">Editar</a>
+                        <td>
+                            <div class="d-flex flex-row">
+                                <a href="/dashboard/articles/${article.getId()}"
+                                    class="btn btn-primary btn-sm d-inline mr-2">Editar</a>
 
-                            <form action="/dashboard/articles/${article.getId()}/delete" method="post">
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                <button class="btn btn-danger btn-sm">Eliminar</a>
-                            </form>
+                                <form action="/dashboard/articles/${article.getId()}/delete" method="post" class="d-inline">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                    <button class="btn btn-danger btn-sm">Eliminar</a>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 </c:forEach>

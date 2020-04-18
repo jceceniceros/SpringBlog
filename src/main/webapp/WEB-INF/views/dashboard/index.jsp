@@ -3,12 +3,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:blog>
+<t:dashboard>
     <jsp:attribute name="title">
-        <title>SpringBlog | Página principal</title>
+        <title>SpringBlog | Crear nuevo usuario</title>
     </jsp:attribute>
 
     <jsp:body>
-        <h1>Página principal</h1>
+        <p>Selecciona una opción del menú</p>
     </jsp:body>
-</t:blog>
+</t:dashboard>

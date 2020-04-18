@@ -19,28 +19,15 @@
             <header>
                 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
                     <div class="container">
-                        <a href="#" class="navbar-brand">SpringBlog</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-
-                        <div id="navbar-collapse" class="collapse navbar-collapse">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">Home</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <a href="#" class="navbar-brand">SpringBlog Dashboard</a>
 
                         <ul class="nav navbar-nav navbar-right">
-
                             <li>
                                 <form action="/auth/logout" method="post">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                     <input type="submit" class="btn btn-primary btn-small btn-nav" value="Cerrar sesión">
                                 </form>
                             </li>
-
                         </ul>
                     </div>
                 </nav>
