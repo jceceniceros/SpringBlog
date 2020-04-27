@@ -60,10 +60,6 @@
                     <input type="submit" class="btn btn-primary btn-block" value="Iniciar sesión">
                 </form>
             </div>
-
-            <div class="card-footer text-center">
-                <a href="/auth/register">Crear cuenta</a>
-            </div>
         </div>
     </jsp:body>
 </t:auth>

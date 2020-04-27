@@ -6,7 +6,9 @@ import javax.validation.Valid;
 
 import com.jceceniceros.tecmilenio.blog.forms.users.StoreUserForm;
 import com.jceceniceros.tecmilenio.blog.forms.users.UpdateUserForm;
+import com.jceceniceros.tecmilenio.blog.models.Role;
 import com.jceceniceros.tecmilenio.blog.models.User;
+import com.jceceniceros.tecmilenio.blog.services.RoleService;
 import com.jceceniceros.tecmilenio.blog.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,17 +27,22 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class DashboardUserController {
 
     @Autowired
-    UserService service;
+    RoleService roleService;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping(value = {"", "/"})
     public String index(ModelMap model) {
-        List<User> users = service.all();
+        List<User> users = userService.all();
         model.addAttribute("users", users);
         return "dashboard/users/index";
     }
 
     @GetMapping(value = "/create")
     public String create(Model model) {
+        List<Role> roles = roleService.all();
+        model.addAttribute("roles", roles);
         return "dashboard/users/create";
     }
 
@@ -50,7 +57,7 @@ public class DashboardUserController {
             return "redirect:/dashboard/users/create";
         }
 
-        service.save(userForm, null);
+        userService.save(userForm, null);
 
         attributes.addFlashAttribute("successMessage", "El usuario se creo correctamente");
         return "redirect:/dashboard/users";
@@ -61,8 +68,12 @@ public class DashboardUserController {
         @PathVariable Long userId,
         Model model
     ) {
-        User user = service.find(userId);
+        List<Role> roles = roleService.all();
+        model.addAttribute("roles", roles);
+
+        User user = userService.find(userId);
         model.addAttribute("user", user);
+
         return "dashboard/users/edit";
     }
 
@@ -80,8 +91,8 @@ public class DashboardUserController {
             return redirect;
         }
 
-        User user = service.find(userId);
-        service.save(userForm, user);
+        User user = userService.find(userId);
+        userService.save(userForm, user);
 
         attributes.addFlashAttribute("successMessage", "El usuario se actualizó corectamente");
         return redirect;
@@ -92,8 +103,8 @@ public class DashboardUserController {
         @PathVariable Long userId,
         RedirectAttributes attributes)
     {
-        User user = service.find(userId);
-        service.delete(user);
+        User user = userService.find(userId);
+        userService.delete(user);
         attributes.addFlashAttribute("successMessage", "El usuario se eliminó correctamente.");
         return "redirect:/dashboard/users";
     }

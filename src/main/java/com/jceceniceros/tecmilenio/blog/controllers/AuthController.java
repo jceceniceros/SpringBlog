@@ -37,7 +37,7 @@ public class AuthController {
 
         return "auth/login";
     }
-
+    /*
     @GetMapping(value = "/register")
     public String showRegister() {
         return "auth/register";
@@ -59,5 +59,5 @@ public class AuthController {
         attributes.addFlashAttribute("successMessage", "El registro se completó correctamente");
         return "redirect:/auth/login";
     }
-
+    */
 }

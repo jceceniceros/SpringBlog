@@ -1,7 +1,7 @@
 package com.jceceniceros.tecmilenio.blog.models;
 
 import java.sql.Timestamp;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -44,20 +47,27 @@ public class User {
     private String rememberToken;
 
     @CreationTimestamp
-    @Column(name = "created_at", updatable = false, nullable = false)
+    @Column(name = "created_at")
     private Timestamp createdAt;
 
     @UpdateTimestamp
-    @Column(name = "updated_at", updatable = false, nullable = false)
+    @Column(name = "updated_at")
     private Timestamp updatedAt;
 
     @Column(name = "deleted_at")
     private Timestamp deletedAt;
 
     @OneToMany(mappedBy = "author", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
-    private Set<Article> articles;
+    private List<Article> articles;
 
-    // Constructores
+    @ManyToMany(cascade=CascadeType.MERGE)
+    @JoinTable(
+       name="role_user",
+       joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+       inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")})
+    private List<Role> roles;
+
+    // Constructors
 
     public User() {}
 
@@ -147,10 +157,27 @@ public class User {
         return String.format("%s %s", firstName, lastName);
     }
 
+    public boolean hasRole(String roleName) {
+        for (Role role : getRoles()) {
+            if (roleName.equals(role.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Relationships
 
-    public Set<Article> getArticles() {
+    public List<Article> getArticles() {
         return this.articles;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
 }

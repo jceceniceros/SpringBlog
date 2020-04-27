@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jceceniceros.tecmilenio.blog.models.Role;
 import com.jceceniceros.tecmilenio.blog.models.User;
 import com.jceceniceros.tecmilenio.blog.services.UserService;
 
@@ -27,7 +28,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userService.findByUsername(username);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority("user"));
+        for (Role role : user.getRoles()) {
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
 
         return new org.springframework.security.core.userdetails.User(
             user.getUsername(),

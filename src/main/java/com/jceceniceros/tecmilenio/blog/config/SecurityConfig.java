@@ -28,12 +28,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
+                .antMatchers("/dashboard/articles/**").hasAnyRole("ADMIN", "AUTHOR")
+                .antMatchers("/dashboard/users/**").hasRole("ADMIN")
                 .antMatchers("/dashboard/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
             .formLogin()
                 .loginPage("/auth/login")
-                .defaultSuccessUrl("/dashboard/articles")
+                .defaultSuccessUrl("/dashboard")
                 .and()
             .logout()
                 .logoutUrl("/auth/logout")
@@ -44,7 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(passwordEncoder());
     }
 
 }

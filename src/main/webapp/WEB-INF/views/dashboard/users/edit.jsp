@@ -68,6 +68,21 @@
                     id="user-password" class="form-control">
             </div>
 
+            <p class="font-weight-bold">Roles:</p>
+            <div class="form-row mb-5">
+                <c:forEach items="${roles}" var="role">
+                    <div class="col-xl-3.col-lg-3.col-md-3.col-12">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" name="roles"
+                                id="role-${role.getId()}" class="custom-control-input"
+                                value="${role.getId()}"
+                                ${ user.hasRole(role.getName()) ?  'checked' : '' }>
+                            <label for="role-${role.getId()}" class="custom-control-label">${role.getName()}</label>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
             <div class="form-group text-center">
                 <input type="submit" class="btn btn-primary" value="Guardar cambios">
             </div>

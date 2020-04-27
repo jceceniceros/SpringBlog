@@ -1,6 +1,10 @@
 package com.jceceniceros.tecmilenio.blog.forms.users;
 
+import java.util.List;
+
 import javax.validation.constraints.NotEmpty;
+
+import com.jceceniceros.tecmilenio.blog.models.Role;
 
 public class StoreUserForm extends UserForm {
 
@@ -16,6 +20,8 @@ public class StoreUserForm extends UserForm {
     @NotEmpty(message="{user.password.empty}")
     private String password;
 
+    @NotEmpty(message = "{user.roles.empty}")
+    private List<Role> roles;
 
     public String getFirstName() {
         return firstName;
@@ -47,6 +53,14 @@ public class StoreUserForm extends UserForm {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
 }
