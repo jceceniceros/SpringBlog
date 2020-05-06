@@ -1,6 +1,10 @@
 {
     "/scripts/app.js": "/scripts/app.js",
+    "/scripts/dashboard/articles/editor.js": "/scripts/dashboard/articles/editor.js",
     "/styles/app.css": "/styles/app.css",
+    "/styles/editor.css": "/styles/editor.css",
     "/scripts/manifest.js": "/scripts/manifest.js",
-    "/scripts/vendor.js": "/scripts/vendor.js"
+    "/scripts/vendor.js": "/scripts/vendor.js",
+    "/scripts/vendor/editor/editor.js": "/scripts/vendor/editor/editor.js",
+    "/scripts/vendor/validator.js": "/scripts/vendor/validator.js"
 }

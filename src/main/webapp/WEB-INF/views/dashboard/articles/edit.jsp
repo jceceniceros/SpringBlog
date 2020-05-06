@@ -8,6 +8,11 @@
         <title>SpringBlog | Editar artículo</title>
     </jsp:attribute>
 
+    <jsp:attribute name="scripts">
+        <script type="text/javascript" src="/scripts/vendor/editor/editor.js"></script>
+        <script src="/scripts/dashboard/articles/editor.js"></script>
+    </jsp:attribute>
+
     <jsp:body>
         <div class="d-flex justify-content-between align-items-center">
             <h3 class="mb-0">Artículos > Editar</h3>
@@ -52,7 +57,7 @@
                 <label for="article-body">Contenido:</label>
                 <textarea name="body"
                     id="article-body" class="form-control"
-                    rows="10">${article.getBody()}</textarea>
+                    rows="50">${article.getBody()}</textarea>
             </div>
 
             <div class="form-group">

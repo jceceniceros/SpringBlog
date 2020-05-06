@@ -33,14 +33,37 @@ mix.alias({
 
 mix.babel(
     [
+        'node_modules/tinymce/tinymce.min.js',
+        'node_modules/tinymce/themes/silver/theme.min.js',
+        'node_modules/tinymce-i18n/langs/es_MX.js'
+    ],
+    'src/main/resources/static/scripts/vendor/editor/editor.js'
+);
+mix.copyDirectory(
+    'node_modules/tinymce/skins',
+    'src/main/resources/static/scripts/vendor/editor/skins'
+);
+mix.copyDirectory(
+    'node_modules/tinymce/plugins',
+    'src/main/resources/static/scripts/vendor/editor/plugins'
+);
+mix.copyDirectory(
+    'node_modules/tinymce/themes',
+    'src/main/resources/static/scripts/vendor/editor/themes'
+);
+
+mix.babel(
+    [
         'node_modules/jquery-validation/dist/jquery.validate.min.js',
         'node_modules/jquery-validation/dist/additional-methods.min.js',
         'node_modules/jquery-validation/dist/localization/messages_es.js'
     ],
-    'public/js/vendor/validator.js'
+    'src/main/resources/static/scripts/vendor/validator.js'
 );
 
 // ----------
+
+mix.js('resources/js/dashboard/articles/editor.js', 'src/main/resources/static/scripts/dashboard/articles')
 
 mix.js('resources/js/app.js', 'src/main/resources/static/scripts')
     .extract([
@@ -55,7 +78,8 @@ mix.js('resources/js/app.js', 'src/main/resources/static/scripts')
 
 // ----------
 
-mix.sass('resources/sass/app.scss', 'src/main/resources/static/styles');
+mix.sass('resources/sass/app.scss', 'src/main/resources/static/styles')
+    .sass('resources/sass/editor.scss', 'src/main/resources/static/styles');
 
 // ----------
 
