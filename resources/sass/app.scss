@@ -4,7 +4,15 @@
 @import 'variables';
 
 // Bootstrap
+@import '~animate.css/animate.min.css';
 @import '~bootstrap/scss/bootstrap.scss';
+@import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "@fortawesome/fontawesome-free/scss/solid.scss";
+@import "@fortawesome/fontawesome-free/scss/regular.scss";
+@import "@fortawesome/fontawesome-free/scss/brands.scss";
+@import '~sweetalert/dev/sweetalert';
+@import '~toastr/toastr';
 
 // Imports
+@import 'colors';
 @import 'general';

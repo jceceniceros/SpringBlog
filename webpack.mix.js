@@ -31,6 +31,15 @@ mix.alias({
  |
  */
 
+mix.babel(
+    [
+        'node_modules/jquery-validation/dist/jquery.validate.min.js',
+        'node_modules/jquery-validation/dist/additional-methods.min.js',
+        'node_modules/jquery-validation/dist/localization/messages_es.js'
+    ],
+    'public/js/vendor/validator.js'
+);
+
 // ----------
 
 mix.js('resources/js/app.js', 'src/main/resources/static/scripts')
@@ -38,7 +47,10 @@ mix.js('resources/js/app.js', 'src/main/resources/static/scripts')
         'lodash',
         'popper.js',
         'bootstrap',
-        'jquery'
+        'jquery',
+        'axios',
+        'qs',
+        'toastr'
     ]);
 
 // ----------

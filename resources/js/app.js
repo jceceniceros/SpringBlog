@@ -5,3 +5,10 @@
  */
 
 require('./bootstrap');
+
+import Lang from '@/utils/Lang';
+window.Lang = Lang;
+window.__ = (string) => Lang.get(string);
+
+import initAnimations from '@/utils/Animate';
+initAnimations();
